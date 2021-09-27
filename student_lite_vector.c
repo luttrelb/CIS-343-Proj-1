@@ -8,7 +8,7 @@ lite_vector* lv_new_vec(size_t type_size_){
 	lv->type_size = type_size_;
 	lv->length = 0;
 	lv->max_capacity = 10;
-	lv->data = malloc(sizeof((void)lv->max_capacity));
+	lv->data = malloc(sizeof((void*)*lv->max_capacity));
 	return lv;
 }
 
@@ -18,6 +18,7 @@ void lv_cleanup(lite_vector* vec){
 }
 
 bool lv_clear (lite_vector* vec){
+	free(vec->data);
 	vec->length = 0;
 	vec->max_capacity = 10;
 	vec->data = malloc(sizeof((void*) * vec->max_capacity));
@@ -40,7 +41,7 @@ void* lv_get(lite_vector* vec, size_t index){
 }
 
 static bool resize(lite_vector* vec){
-	vec->max_capacity = vec->max_capacity * 1.5;
+	vec->max_capacity = vec->max_capacity * 10;
 	vec->data = malloc(sizeof((void*)*max_capacity));
 }
 
