@@ -19,9 +19,9 @@ void lv_cleanup(lite_vector* vec){
 
 bool lv_clear (lite_vector* vec){
 	vec->length = 0;
-	vec->max_capacity = 1000;
-	vec->data = malloc(sizeof((void)max_capacity));
-
+	vec->max_capacity = 10;
+	vec->data = malloc(sizeof((void*) * vec->max_capacity));
+	//return true if vec->data is null
 }
 
 size_t lv_get_length(lite_vector* vec){
@@ -41,7 +41,7 @@ void* lv_get(lite_vector* vec, size_t index){
 
 static bool resize(lite_vector* vec){
 	vec->max_capacity = vec->max_capacity * 1.5;
-	vec->data = malloc(sizeof((void)max_capacity));
+	vec->data = malloc(sizeof((void*)*max_capacity));
 }
 
 bool lv_append(lite_vector* vec, void* element){
